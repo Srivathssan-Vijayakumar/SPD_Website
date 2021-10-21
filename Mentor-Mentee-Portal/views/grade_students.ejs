@@ -1,0 +1,37 @@
+<%- include('mentor_header'); -%>
+<div class="attendance-container">
+    <div class="attendance-heading">
+        <h2 class="text-center"> Grade Student Section </h2>
+    </div>
+    <div class="attendance-table">
+        <table class="table table-hover table-dark table-striped">
+            <thead>
+                <th>S.No</th>
+                <th>Student Name</th>
+                <th>Test Title</th>
+                <th>Grade Student</th>
+            </thead>
+            <tbody>
+                <% students.forEach((student)=>{ %>
+                    <% if(student.Mentor == mentor_name){ %>
+                        <tr>
+                            <td><%= student.id%></td>
+                            <td><%= student.Name%></td>
+                            <td>
+                                <select id="attendance-option" name="test_name">
+                                    <% tests.forEach((test)=>{ %>
+                                        <% if(test.mentor == mentor_name){ %>
+                                            <option value="<%=test.title %>"><%= test.title%></option>
+                                        <% } %>
+                                    <% }); %>
+                                </select>
+                            </td>
+                            <td><a class="btn btn-success" href="#">Grade Student</a></td>
+                        </tr>
+                    <% } %>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<%- include('footer'); -%>

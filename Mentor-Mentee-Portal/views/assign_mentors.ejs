@@ -1,0 +1,41 @@
+<%- include('admin_header'); -%>
+<div class="row col-md-12 assign-mentor-heading">
+    <h3 class="text-center">
+        Assign Mentor Section
+    </h3>
+</div>
+<section class="assign-mentors">
+    <div class="assign-mentor-table">
+        <table class="table table-dark table-hover table-striped">
+            <thead>
+                <th>S.no</th>
+                <th>Student's Name</th>
+                <th>Mentor</th>
+                <th>Assign Mentor</th>
+            </thead>
+            <tbody>
+                <% var count=1; %>
+                <% students.forEach((student)=> { %>
+                    <% if(!student.Mentor){ %>
+                        <tr>
+                            <td><%= count%></td>
+                            <td><%= student.Name %></td>
+                            <td>
+                                <select class="assign-mentor-select">
+                                    <% mentors.forEach((mentor)=>{ %>
+                                        <option value="<%= mentor.Name %>"> <%= mentor.Name %></option>
+                                    <% }); %>
+                                </select>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-success"> Assign Mentor </a>
+                            </td>
+                        </tr>
+                        <% count+=1; %>
+                    <% } %>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</section>
+<%- include('footer'); -%>

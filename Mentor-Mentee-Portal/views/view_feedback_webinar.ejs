@@ -1,0 +1,58 @@
+<%- include('admin_header'); -%>
+
+<div class="view-feedback-heading">
+    <h3 class="text-center"> <%=mentor %>'s <%=webinar %> Feedback </h3>
+</div>
+
+<div class="view-feedback-outer-container">
+    <% feedbacks.forEach((feedback)=>{ %>
+        <div class="view-feedback-inner-container row">
+            <div class="col-md-4 section-3">
+                <img class="feedback-pic" src="/images/feedback-picture.jpg" alt="feedback-picture">
+            </div>
+            <div class="col-md-8 section-2">
+                <div class="row heading">
+                    <h3 class="text-center"> Feedback Section </h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4> Webinar Title :  </h4>
+                        <hr>
+                        <p> <%=feedback.webinar %> </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 > Mentor Name :  </h4>
+                        <hr>
+                        <p > <%=feedback.mentor %> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 > Feedback Provider :  </h4>
+                        <hr>
+                        <p > <%=feedback.student %> </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 > Provider Rating:  </h4>
+                        <hr>
+                        <p > <%=parseFloat(feedback.rating).toFixed(2) %> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 > Feedback :  </h4>
+                    </div>
+                    <hr>
+                    <div class="col-md-12">
+                        <p > <%=feedback.feedback %> </p>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    <% }); %>
+    <div class="bottom-btn row">
+        <a href="/admin/view-feedback/<%= mentor %>" class="btn btn-danger">Back To Webinars</a>
+    </div>
+</div>
+
+<%- include('footer'); -%>

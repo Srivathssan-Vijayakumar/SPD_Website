@@ -1,0 +1,53 @@
+<%- include('student_header'); -%>
+<div class="heading-container mx-auto container">
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center"><%= username%>'s Details</h1>
+    </div>
+</div>
+</div>
+<div class="profile-container container">
+    <div class="row">
+        <div class="section-1 col-md-4">
+            <div class="col-md-12 text-center">
+                <img src="/student_images/<%= user.image%>.png" class="profile-photo" >
+            </div>
+            <div class="text-center col-md-12">
+                <p><%= user.username %></p>
+                <p><%= user.Mentor %></p>
+                <a href="/student/edit-profile" class="btn btn-primary"> Edit Profile </a>
+            </div>
+        </div>
+        <div class="section-2 col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Credentials</h3>
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Email</h3>
+                    <p><%= user.email %></p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Phone</h3>
+                    <p><%= user.Mobile_Number %></p>
+                </div>
+            </div>
+            <div class="row">
+                <h3>Attendance Details</h3>
+                <hr>
+                <div class="col-md-12">
+                    <%= parseFloat(user.attendance).toFixed(2)%>
+                </div>
+            </div>
+            <div class="view-details-btn row">
+                <div class="col-md-12">
+                    <a class=" btn btn-primary" href="/student/grades">View Grades</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer'); -%>

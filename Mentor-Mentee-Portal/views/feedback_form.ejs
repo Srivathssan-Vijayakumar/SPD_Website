@@ -1,0 +1,66 @@
+<%- include('student_header'); -%>
+<div class="feedback-heading row">
+    <div class="col-mb-12">
+        <h1 class="text-center">FEEDBACK SECTION</h1>
+    </div>
+</div>
+<div class="container feedback-container">
+    <div class="feedback-card">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">FEEDBACK FORM</h1>
+            </div>
+        </div>
+        <form method="post" action="/student/feedback">
+            <div class="mb-3 row">
+                <div class="col-sm-12">
+                    <input class="input-text" type="text" name="username"  placeholder="Your Name">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="col-sm-12">
+                    <input class="input-text" type="text" name="mentor" placeholder="Mentor Name">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="col-sm-12">
+                    <input class="input-text" type="text" name="webinar" placeholder="Webinar Name">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="col-sm-12">
+                    <textarea name="feedback"  placeholder="Your Feedback"></textarea>
+                </div>
+            </div>
+            <div class="mb-3 row rating">
+                <p> Your Rating : </p>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="1">
+                    <label class="form-check-label" for="inlineRadio1">1(Very Poor)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="inlineRadio2" value="2">
+                    <label class="form-check-label" for="inlineRadio2">2(Not Bad)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="3" >
+                    <label class="form-check-label" for="inlineRadio3">3(Average)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="inlineRadio4" value="4" >
+                    <label class="form-check-label-light" for="inlineRadio4">4(Good)</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="rating" id="inlineRadio5" value="5" >
+                    <label class="form-check-label" for="inlineRadio5">5(Excellent)</label>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-light">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<%- include('footer'); -%>

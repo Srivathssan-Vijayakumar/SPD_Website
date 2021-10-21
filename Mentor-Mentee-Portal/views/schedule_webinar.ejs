@@ -1,0 +1,67 @@
+<%- include('mentor_header'); -%>
+<div class="outer-container">
+    <div class="test-container container">
+        <div class="row">
+            <div class="test-section-1 col-lg-3">
+                <img src="/images/webinar.jpg" class="schedule-test-image">
+            </div>
+            <div class="test-section-2 col-lg-9">
+                <div class="row">
+                    <div class="test-heading col-md-12">
+                        <h3>SCHEDULE WEBINAR</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <form method="post" action="#">
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <select  aria-label="Default select example" aria-placeholder="Select Mentor Name">
+                                    <% mentors.forEach((mentor)=>{ %>
+                                        <option value="<%= mentor.Name%>"><%= mentor.username %></option>
+                                        <% }); %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input  name="title" type="text" placeholder="Webinar Title">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input  name="date" type="text" placeholder="Test Date(DD/MM/YYYY)">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input  name="time" type="text" placeholder="Time(HH:MM:SS)">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input  type="text" placeholder="Webinar-Link">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success" name="submit" type="submit">Schedule</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            var date_input=$('input[name="date"]');
+            var container=$('.row form').length>0 ? $('.row form') : "body";
+            var options={
+                format:'dd/mm/yyyy',
+                todayHighlight:true,
+                autoclose:true
+            };
+            date_input.datepicker(options);
+        })
+    </script>
+
+<%- include('footer'); -%>

@@ -1,0 +1,337 @@
+*{
+    margin:0;
+    padding:0;
+    border:none;
+    outline:none;
+    box-sizing: border-box;
+}
+/* Student Section Styles */
+/* Student-Profile Styles */
+.profile-container{
+    border-radius:5px 0 0 5px;
+    -webkit-box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.2);
+}
+.heading-container{
+  margin-bottom:20px;
+  width:100%;   
+}
+.heading-container h1{
+    text-transform: uppercase;
+}
+.section-1{
+    background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+    background: linear-gradient(to right, #ee5a6f, #f29263);
+    padding:20px 0;
+}
+
+.section-1 p{
+    text-transform: uppercase;
+}
+.profile-photo{
+    max-width:100%;
+    height:100%;
+    border-radius:50%;
+}
+.section-2{
+    padding:1.25rem 4rem;
+}
+
+.section-2 .row{
+    margin-bottom:10px;
+}
+.view-details-btn{
+    padding:20px 0px;
+}
+.view-details-btn a{
+    margin:0 auto;
+    display:block;
+    width:20%;
+}
+/* Student-Profile Styles */
+
+
+/* Feedback Styles */
+.feedback-heading{
+    margin:15px;
+    text-transform: capitalize;
+}
+
+.feedback-container{
+    display:block;
+    margin:0px auto 0px;
+    padding:5%;
+    max-width:1000px;
+    -webkit-box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.2);
+}
+.feedback-card{
+    display:block;
+    margin:0 auto;
+    width:100%;
+    border-radius:5px;
+    padding:1.25rem 5rem;
+    background:#74b72e;
+    color:#fff;
+    box-shadow:
+       inset 0 -3em 3em rgba(0,0,0,0.015),
+             0 0  0 2px rgba(116,183,46,0.9),
+             0.3em 0.3em 1em rgba(0,0,0,0.015);
+}
+.feedback-card div{
+    margin:15px 0px;
+}
+.feedback-card form div.row{
+    margin-bottom:15px;
+}
+
+.feedback-card input.input-text{
+    outline:none;
+    border:none;
+    background:transparent;
+    border-bottom:1px solid #ccc;
+    font-size:1rem;
+    width:100%;
+    padding:0rem 0.65rem 0.85rem;
+    color:#fff;
+}
+
+.feedback-card textarea{
+    height:200px;
+    border:none;
+    outline:none;
+    background:transparent;
+    border-bottom:1px solid #ccc;
+    width:100%;
+    padding:0rem 0.65rem 0.85rem;
+    color:#fff;
+}
+
+.feedback-card button{
+    text-transform: uppercase;
+    padding:0.65rem 0.85rem 0.7rem;
+    width:20%;
+    margin-top:15px;
+}
+
+.rating{
+    padding:0rem 1rem;
+    background:transparent;
+}
+.rating p{
+    color:#636c72;
+    font-weight:400;
+}
+/* Feedback Styles End*/
+/* Student Section Styles End*/
+
+
+/*Mentor Section Styles */
+
+/* Schedule Test Styles */
+.outer-container{
+    display: block;
+    margin:50px auto 0px;
+    max-width: 1000px;
+    padding:5% 0;
+}
+.test-container{
+    border-radius:10px 10px 10px 10px;
+    box-shadow:
+    0 0  0 2px rgba(255,255,255,0.8),
+    0.3em 0.3em 1em rgba(0,0,0,0.08);
+}
+.test-section-1{
+    padding:0;
+    margin:0;
+}
+.schedule-test-image{
+    width:100%;
+    height:100%;
+}
+
+.test-section-2{
+    padding:1.25rem;
+}
+
+.test-section-2 .test-heading{
+    margin:10px;
+}
+
+.test-section-2 form .row{
+    margin-bottom:60px;
+    padding:1.25rem;
+}
+
+
+.test-section-2 form select{
+    outline:none;
+    border:none;
+    background:transparent;
+    border-bottom:1px solid #636c72;
+    text-transform: capitalize;
+    padding:0 0.65rem 0.65rem;
+    color:gray;
+    font-weight:500;
+    width:100%;
+}
+
+.test-section-2 form input{
+    outline:none;
+    border:none;
+    background:transparent;
+    border-bottom:1px solid #636c72;
+    text-transform: capitalize;
+    padding:0 0.65rem 0.65rem;
+    color:gray;
+    font-weight:500;
+    width:100%;
+}
+
+.test-section-2 .btn-success{
+    display: block;
+    margin:0 auto;
+    width:25%;
+}
+/* Schedule Test Styles End*/
+
+/* Mark Attendance Style */
+
+.attendance-container{
+    max-width:1200px;
+    display:block;
+    margin:0 auto;
+}
+
+.attendance-heading{
+    display:block;
+    margin:10px auto 0px;
+    padding:1rem;
+}
+.attendance-heading h2{
+    text-transform: uppercase;
+}
+.attendance-table{
+    padding:2rem 1.5rem;
+}
+
+.attendance-table table th{
+    text-transform: capitalize;
+    font-size:1.4rem;
+}
+.attendance-table table tr td{
+    font-size:1.3rem;
+}
+.attendance-table table select{
+    outline:none;
+    border:none;
+    font-size:1.3rem;
+    color:#fff;
+    background:transparent;
+}
+.attendance-table table select option{
+    outline:none;
+    border:none;
+    font-size:1.3rem;
+    background:#212122;
+}
+
+/* Mark Attendance Styles End*/
+/*Mentor Section Styles End */
+
+/* Admin styles */
+/* View Feedback Section Styles */
+.view-feedback-outer-container{
+    max-width:1200px;
+    display:block;
+    margin:0 auto;
+}
+
+.view-feedback-inner-container{
+    -webkit-box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.2);
+    margin:2.5rem 0rem;
+}
+
+.view-feedback-inner-container .section-1{
+    background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+    background: linear-gradient(to right, #ee5a6f, #f29263);
+    padding:1.25rem 1.5rem 1.5rem;
+    color:#fff;
+}
+
+.view-feedback-inner-container .section-1 img{
+    border-radius:50%;
+    width:100%;
+    height:100%;
+}
+
+.view-feedback-heading{
+    display:block;
+    margin:20px auto;
+    padding:1rem 0rem;
+}
+
+.bottom-btn{
+    display:block;
+    margin:20px auto;
+    width:20%;
+}
+.view-feedback-inner-container .section-3{
+    padding:0;
+}
+.view-feedback-inner-container .section-2{
+    padding:2rem 1.25rem;
+}
+
+.view-feedback-inner-container .section-2 div{
+    margin:7px 0px 8px;
+} 
+
+.view-feedback-inner-container .section-2 .heading{
+    margin:10px 0px;
+}
+
+
+.view-feedback-inner-container .feedback-pic{
+    width:100%;
+    height:100%;
+}
+/* View Feedback Section Styles End*/
+/* Assign Mentor Section Styles */
+.assign-mentor-heading{
+    margin:20px 0px;
+    text-transform: uppercase;
+}
+.assign-mentors{
+    max-width:1200px;
+    display:block;
+    margin:30px auto 0px;
+}
+.assign-mentor-table{
+    padding:1.5rem 1.25rem;
+    -webkit-box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.assign-mentor-table table td{
+    padding:20px;
+}
+.assign-mentor-table table th{
+    padding:20px;
+}
+.assign-mentor-table table thead{
+    text-transform: capitalize;
+}
+.assign-mentor-table table td select{
+    background:transparent;
+    border:none;
+    outline:none;
+    color:#fff;
+}
+.assign-mentor-table table td select option{
+    background:#212122;
+    color:#fff;
+}
+/* Assing Mentors Section Styles End*/
+/* Admin Styles End */

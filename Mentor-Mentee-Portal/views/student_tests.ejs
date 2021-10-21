@@ -1,0 +1,63 @@
+<%- include('student_header'); -%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Scheduled Tests</h1>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-hover table-dark table-striped">
+                <thead>
+                    <th>S.No</th>
+                    <th>Test Title</th>
+                    <th>Date Of Test</th>
+                    <th>Time of Test</th>
+                    <th>Attend Test</th>
+                </thead>
+                <tbody>
+                    <% tests.forEach((test)=>{ %>
+                        <% if(test.mentor==mentor){ %>
+                            <tr>
+                                <td><%= test.id %></td>
+                                <td><%= test.title %></td>
+                                <td><%= test.date %></td>
+                                <td><%= test.time %></td>
+                                <td><a class="btn btn-primary" href="<%= test.testLink %>">Attend Test</a></td>
+                            </tr>
+                            <% } %>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center">Scheduled Webinars</h1>
+                </div>
+                <div class="col-md-12">
+                    <table class="table table-hover table-dark table-striped">
+                        <thead>
+                            <th>S.No</th>
+                            <th>Webinar Title</th>
+                            <th>Date of Webinar (DD/MM/YYYY)</th>
+                            <th>Time of Webinar (GMT+5:30 HH:MM::SS)</th>
+                            <th>Attend Webinar</th>
+                        </thead>
+                        <tbody>
+                            <% webinars.forEach((webinar)=>{ %>
+                                <% if(webinar.mentor==mentor){ %>
+                                    <tr>
+                                        <td><%= webinar.id %></td>
+                                        <td><%= webinar.title %></td>
+                                        <td><%= webinar.date %></td>
+                                        <td><%= webinar.time %></td>
+                                        <td><a class="btn btn-primary" href="<%= webinar.webinarLink %>">Attend Webinar</a></td>
+                                    </tr>
+                                    <% } %>
+                                    <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+<%- include('footer'); -%>

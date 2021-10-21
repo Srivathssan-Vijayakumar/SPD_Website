@@ -1,0 +1,56 @@
+<%- include('admin_header'); -%>
+<div class="view-feedback-heading">
+    <h3 class="text-center"> Feedback View Section </h3>
+</div>
+<div class="view-feedback-outer-container">
+<% mentors.forEach((mentor)=>{ %>
+    <div class="view-feedback-inner-container">
+        <div class="row container-box">
+            <div class="col-md-4 section-1">
+                <div class="row col-md-12">
+                    <img src="/student_images/noimage.png" alt="mentor-image" class="view-attendance-img">
+                </div>
+                <p class="text-center"> <%= mentor.username %></p>
+                <div class="text-center col-md-12">
+                    <a href="/admin/view-feedback/<%= mentor.Name %>" class="btn btn-danger">View FeedBack</a>
+                </div>
+            </div>
+            <div class="col-md-8 section-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Personal Details</h3>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4> Mentor Name : </h4>
+                        <hr>
+                        <p> <%= mentor.Name%> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4> Mentor Name : </h4>
+                        <hr>
+                        <p> <%= mentor.email%> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4> Number Of Webinars : </h4>
+                        <hr>
+                        <p> <%= mentor.NumOfWebinars%> </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4> Number of Students : </h4>
+                        <hr>
+                        <p> <%= mentor.NumOfStudents %> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% }); %>
+</div>
+<%- include('footer'); -%>
