@@ -1,8 +1,9 @@
 var express = require('express')
 var router = express.Router()
-var Data= require('../config/data')
+// var Data= require('../config/data')
 const passport = require('passport')
-
+const Students = require('../models/Students')
+const Mentors = require('../models/Mentors')
 router.get("/",function(req,res){
     res.render("login",{
         title:"Log In"
@@ -13,8 +14,6 @@ router.post("/",function(req,res,next){
     var username= req.body.username
     var password = req.body.password
     var type= req.body.flexRadioDefault
-    var students = Data.Students
-    var mentors = Data.Mentors
     if(username==""){
         req.flash('danger','Username is Empty')
         res.render("login",{
@@ -60,5 +59,6 @@ router.get("/logout",(req,res)=>{
     req.flash('success','You Have Logged Out!');
     res.redirect('/');
 })
+
 
 module.exports=router

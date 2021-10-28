@@ -12,12 +12,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <form method="post" action="#">
+                    <form method="post" action="/mentor/schedule-test">
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <select  aria-label="Default select example" aria-placeholder="Select Mentor Name">
+                                <select  name="Mentor" aria-label="Default select example" aria-placeholder="Select Mentor Name">
                                     <% mentors.forEach((mentor)=>{ %>
-                                        <option value="<%= mentor.Name%>"><%= mentor.username %></option>
+                                        <option value="<%= mentor.Name%>"><%= mentor.Username %></option>
                                         <% }); %>
                                     </select>
                                 </div>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-12">
-                                    <input  type="text" placeholder="Test-Link">
+                                    <input  name="link" type="text" placeholder="Test-Link">
                                 </div>
                             </div>
                             <div class="form-group">

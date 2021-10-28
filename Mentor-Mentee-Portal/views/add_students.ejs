@@ -1,0 +1,28 @@
+<%- include('admin_header'); -%>
+<div class="container">
+    <h1> The Add Student Page </h1>
+    <form method="post" action="/admin/add-student">
+        <div class="row form-group">
+            <input class="col-md-12 form-control" type="text" name="Rollno" placeholder="Enter Your Roll Number"/>
+        </div>
+        <div class="row form-group">
+            <input class="col-md-12 form-control" type="text" name="Name" placeholder="Enter Your Name"/>
+        </div>
+        <div class="row form-group">
+            <input class="col-md-12 form-control" type="text" name="Username" placeholder="Enter Your Username"/>
+        </div>
+        <div class="row form-group">
+            <input class="col-md-12 form-control" type="text" name="Email" placeholder="Enter Your Email"/>
+        </div>
+        <div class="row form-group">
+            <input class="col-md-12 form-control" type="text" name="Password" placeholder="Enter Your New Password"/>
+        </div>
+        <div class="row form-group">
+            <input class="col-md-12 form-control" type="text" name="PhoneNo" placeholder="Enter Your Mobile Number"/>
+        </div>
+        <div class="row form-group">
+            <button type="submit" class="btn btn-primary"> Add Student </button>
+        </div>
+    </form>
+</div>
+<%- include('footer'); -%>

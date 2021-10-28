@@ -17,18 +17,18 @@
                 <% var count=1; %>
                 <% students.forEach((student)=> { %>
                     <% if(!student.Mentor){ %>
-                        <tr>
-                            <td><%= count%></td>
-                            <td><%= student.Name %></td>
-                            <td>
-                                <select class="assign-mentor-select">
+                        <tr id="<%= count%>">
+                            <td class="row-data"><%= count%></td>
+                            <td class="row-data"><%= student.Name %></td>
+                            <td >
+                                <select class="row-data" name="mentor" class="assign-mentor-select">
                                     <% mentors.forEach((mentor)=>{ %>
-                                        <option value="<%= mentor.Name %>"> <%= mentor.Name %></option>
+                                        <option  value="<%= mentor.Name %>"> <%= mentor.Name %></option>
                                     <% }); %>
                                 </select>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-success"> Assign Mentor </a>
+                                <a onclick="senddata()" class="assign-mentor btn btn-success"> Assign Mentor </a>
                             </td>
                         </tr>
                         <% count+=1; %>
@@ -38,4 +38,13 @@
         </table>
     </div>
 </section>
+<script>
+    function senddata(){
+        var rowId = event.target.parentNode.parentNode.id;
+        var data = document.getElementById(rowId).querySelectorAll('.row-data')
+        var name = data[1].innerHTML
+        var mentor = data[2].options[data[2].selectedIndex].text
+        $.get('/admin/assigned-mentor/'+name+'/'+mentor)
+    }    
+</script>
 <%- include('footer'); -%>

@@ -3,10 +3,12 @@
     <div class="attendance-heading">
         <h2 class="text-center"> Mark Attendance Section </h2>
     </div>
+    <% var count=1; %>
     <div class="attendance-table">
         <table class="table table-hover table-dark table-striped">
             <thead>
                 <th>S.No</th>
+                <th> Roll Number </th>
                 <th>Student Name</th>
                 <th>Webinar Title</th>
                 <th>Mark Attendance</th>
@@ -14,19 +16,21 @@
             <tbody>
                 <% students.forEach((student)=>{ %>
                     <% if(student.Mentor == mentor_name){ %>
-                        <tr>
-                            <td><%= student.id%></td>
-                            <td><%= student.Name%></td>
+                        <tr id="<%= count %>">
+                            <td><%= count%></td>
+                            <td class="row-data"><%= student.Rollno %></td>
+                            <td class="row-data"><%= student.Name%></td>
                             <td>
                                 <select id="attendance-option" name="webinar_name">
                                     <% webinars.forEach((webinar)=>{ %>
-                                        <% if(webinar.mentor == mentor_name){ %>
-                                            <option value="<%=webinar.title %>"><%= webinar.title%></option>
+                                        <% if(webinar.Mentor == mentor_name){ %>
+                                            <option value="<%=webinar.title %>"><%= webinar.Title%></option>
                                         <% } %>
                                     <% }); %>
                                 </select>
                             </td>
-                            <td><a class="btn btn-success" href="#">Mark Attendance</a></td>
+                            <td><a class="btn btn-success" onclick="attendancefunction()">Mark Attendance</a></td>
+                            <% count+=1; %>
                         </tr>
                     <% } %>
                 <% }); %>
@@ -34,4 +38,15 @@
         </table>
     </div>
 </div>
+<script>
+    function attendancefunction(){
+        var rowId = event.target.parentNode.parentNode.id
+        var data = document.getElementById(rowId).querySelectorAll('.row-data')
+        var rollno = data[0].innerHTML
+        alert(rollno);
+        $.post('/mentor/attendance',{
+            rollno:rollno
+        });
+    }
+</script>
 <%- include('footer'); -%>

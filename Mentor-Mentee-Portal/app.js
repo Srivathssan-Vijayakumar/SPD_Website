@@ -5,7 +5,22 @@ var mongoose = require('mongoose')
 var session = require('express-session')
 const passport = require('passport')
 
+
 var app =express()
+
+const uri = require('./config/database').uri
+mongoose.connect(uri,{
+  useUnifiedTopology:true,
+  useNewUrlParser:true
+})
+const db = mongoose.connection
+db.on('error',()=>{
+  console.log("Error in connecting")
+})
+
+db.once('open',()=>{
+  console.log('MongoDb Connected')
+})
 
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');

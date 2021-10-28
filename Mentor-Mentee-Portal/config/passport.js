@@ -1,8 +1,8 @@
 const passport = require('passport')
 var localstrategy = require('passport-local').Strategy
 var Data = require('./data')
-var students = Data.Students
-var mentors = Data.Mentors
+var Students = Data.Students
+var Mentors = Data.Mentors
 
 function SessionConstructor(userId,userGroup,details){
     this.userId = userId;
@@ -11,10 +11,10 @@ function SessionConstructor(userId,userGroup,details){
 }
 module.exports = function(passport){
     passport.use('student-signup',new localstrategy(function(username,password,done){
-        students.forEach((student)=>{
-            if(student.username===username){
-                if(student.password===password){
-                    return done(null,student,{message:'Logged In Successfully!'})
+        Students.find({Username:username}).then((student)=>{
+            if(student[0].Username===username){
+                if(student[0].Password===password){
+                    return done(null,student[0],{message:'Logged In Successfully!'})
                 }
                 else{
                     return done(null,false,{message:'Wrong Password'})
@@ -27,10 +27,10 @@ module.exports = function(passport){
     //mentor-signup strategy
     
     passport.use('mentor-signup',new localstrategy(function(username,password,done){
-        mentors.forEach((mentor)=>{
-            if(mentor.username==username){
-                if(mentor.password==password){
-                    return done(null,mentor,{message:'Logged In Successfully!'})
+        Mentors.find({Username:username}).then((mentor)=>{
+            if(mentor[0].Username==username){
+                if(mentor[0].Password==password){
+                    return done(null,mentor[0],{message:'Logged In Successfully!'})
                 }
                 else{
                     return done(null,false,{message:'Wrong Password'})
@@ -62,22 +62,22 @@ module.exports = function(passport){
         }else{
             userGroup="mentor"
         }
-        let sessionConstructor = new SessionConstructor(user.id,userGroup,'')
+        let sessionConstructor = new SessionConstructor(user._id,userGroup,'')
         done(null,sessionConstructor)
     })
     
     passport.deserializeUser(function(sessionConstructor,done){
         if(sessionConstructor.userGroup==="student"){
-            students.forEach((student)=>{
-                if(student.id===sessionConstructor.userId){
-                    done(null,student)
-                }
+            Students.findById(sessionConstructor.userId).then((stud)=>{
+                        done(null,stud)
+            }).catch((err)=>{
+                console.log(err.toString())
             })
         }else{
-            mentors.forEach((mentor)=>{
-                if(mentor.id===sessionConstructor.userId){
+            Mentors.findById(sessionConstructor.userId).then((mentor)=>{
                     done(null,mentor)
-                }
+            }).catch((err)=>{
+                console.log(err.toString())
             })
         }
     })

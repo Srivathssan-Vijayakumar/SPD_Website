@@ -1,0 +1,22 @@
+<%- include('admin_header'); -%>
+<div class="container">
+    <h1> The Add Mentors Page </h1>
+    <form method="post" action="/admin/add-mentor">
+        <div class="row form-group">
+            <input class="col-md-12 form-control" type="text" name="Name" placeholder="Enter Your Name"/>
+        </div>
+        <div class="row form-group">
+            <input class="col-md-12 form-control" type="text" name="Username" placeholder="Enter Your Username"/>
+        </div>
+        <div class="row form-group">
+            <input class="col-md-12 form-control" type="text" name="Email" placeholder="Enter Your Email"/>
+        </div>
+        <div class="row form-group">
+            <input class="col-md-12 form-control" type="text" name="Password" placeholder="Enter Your New Password"/>
+        </div>
+        <div class="row form-group">
+            <button type="submit" class="btn btn-primary"> Add Mentor </button>
+        </div>
+    </form>
+</div>
+<%- include('footer'); -%>

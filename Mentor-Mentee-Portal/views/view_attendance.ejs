@@ -10,17 +10,17 @@
             <% if(student.Mentor== mentor_name){ %>
                 <% if(count%3==0){ %>
                     <li class="design">
-                        <div class="piesite" id="pie_0" data-pie="<%= student.attendance %>"></div>
+                        <div class="piesite" id="pie_0" data-pie="<%= student.Attendance %>"></div>
                         <div class="pie-heading"><%= student.Name %></div>
                     </li>
                 <% }else if(count%3==1){ %>
                     <li class="usability col-md-4">
-                        <div class="piesite" id="pie_2" data-pie="<%= student.attendance %>"></div>
+                        <div class="piesite" id="pie_2" data-pie="<%= student.Attendance %>"></div>
                         <div class="pie-heading"><%= student.Name %></div>
                     </li>
                 <% }else{ %>
                     <li class="creativity col-md-4">
-                        <div class="piesite" id="pie_1" data-pie="<%= student.attendance %>"></div>
+                        <div class="piesite" id="pie_1" data-pie="<%= student.Attendance %>"></div>
                         <div class="pie-heading"><%= student.Name %></div>
                     </li>
                 <% } %>

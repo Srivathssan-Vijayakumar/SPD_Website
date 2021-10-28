@@ -14,17 +14,19 @@
                     <th>Attend Test</th>
                 </thead>
                 <tbody>
+                    <% var count =1;%>
                     <% tests.forEach((test)=>{ %>
-                        <% if(test.mentor==mentor){ %>
+                        <% if(test.Mentor==mentor){ %>
                             <tr>
-                                <td><%= test.id %></td>
-                                <td><%= test.title %></td>
-                                <td><%= test.date %></td>
-                                <td><%= test.time %></td>
-                                <td><a class="btn btn-primary" href="<%= test.testLink %>">Attend Test</a></td>
+                                <td><%= count %></td>
+                                <td><%= test.Title %></td>
+                                <td><%= test.Date %></td>
+                                <td><%= test.Time %></td>
+                                <td><a class="btn btn-primary" href="<%= test.TestLink %>">Attend Test</a></td>
                             </tr>
-                            <% } %>
-                            <% }); %>
+                            <% count+=1; %>
+                        <% } %>
+                    <% }); %>
                         </tbody>
                     </table>
                 </div>
@@ -44,14 +46,16 @@
                             <th>Attend Webinar</th>
                         </thead>
                         <tbody>
+                            <% var count=1;%>
                             <% webinars.forEach((webinar)=>{ %>
-                                <% if(webinar.mentor==mentor){ %>
+                                <% if(webinar.Mentor==mentor){ %>
                                     <tr>
-                                        <td><%= webinar.id %></td>
-                                        <td><%= webinar.title %></td>
-                                        <td><%= webinar.date %></td>
-                                        <td><%= webinar.time %></td>
-                                        <td><a class="btn btn-primary" href="<%= webinar.webinarLink %>">Attend Webinar</a></td>
+                                        <td><%= count %></td>
+                                        <td><%= webinar.Title %></td>
+                                        <td><%= webinar.Date %></td>
+                                        <td><%= webinar.Time %></td>
+                                        <td><a class="btn btn-primary" href="<%= webinar.WebinarLink %>">Attend Webinar</a></td>
+                                        <% count+=1; %>
                                     </tr>
                                     <% } %>
                                     <% }); %>

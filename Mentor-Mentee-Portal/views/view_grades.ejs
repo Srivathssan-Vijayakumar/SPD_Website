@@ -1,0 +1,27 @@
+<%- include('student_header'); -%>
+<div class="container">
+    <div class="grade-heading">
+    <h1 class="text-center"> Test Reports </h1>
+    </div>
+    <% var count=1; %>
+    <div class="grade-table-container">
+        <table>
+            <thead>
+                <th> S.No </th>
+                <th> Test Title </th>
+                <th> Grade </th>
+            </thead>
+            <tbody>
+                <% grades.forEach((grade)=>{ %>
+                <tr>
+                    <td><%= count %></td>
+                    <td><%= grade.Test %></td>
+                    <td><%= grade.Grade %></td>
+                </tr>
+                <% count+=1; %>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<%- include('footer'); -%>

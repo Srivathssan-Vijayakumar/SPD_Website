@@ -3,35 +3,65 @@
     <div class="attendance-heading">
         <h2 class="text-center"> Grade Student Section </h2>
     </div>
-    <div class="attendance-table">
-        <table class="table table-hover table-dark table-striped">
-            <thead>
-                <th>S.No</th>
-                <th>Student Name</th>
-                <th>Test Title</th>
-                <th>Grade Student</th>
-            </thead>
-            <tbody>
-                <% students.forEach((student)=>{ %>
-                    <% if(student.Mentor == mentor_name){ %>
-                        <tr>
-                            <td><%= student.id%></td>
-                            <td><%= student.Name%></td>
-                            <td>
-                                <select id="attendance-option" name="test_name">
-                                    <% tests.forEach((test)=>{ %>
-                                        <% if(test.mentor == mentor_name){ %>
-                                            <option value="<%=test.title %>"><%= test.title%></option>
-                                        <% } %>
+    <% var id=1; %>
+    <% tests.forEach((test)=>{ %>
+        <% if(!test.IsGraded && test.Mentor==mentor_name){ %>
+            <div class="attendance-table">
+                <table class="table table-hover table-dark table-striped">
+                    <thead>
+                        <th>S.No</th>
+                        <th>Student Name</th>
+                        <th>Test Title</th>
+                        <th>Marks</th>
+                        <th>Grade Students</th>
+                    </thead>
+                    <tbody>
+                        <h2 class="text-center"><%= test.Title %> Grading </h2>
+                        <% var count=1; %>
+                        <% students.forEach((student)=>{ %>
+                            <% if(student.Mentor == mentor_name){ %>
+                                <tr id="<%= id%>">
+                                    <td class="row-data"><%= count%></td>
+                                    <td class="row-data"><%= student.Username%></td>
+                                    <td class="row-data"><%= test.Title%></td>
+                                    <td>
+                                        <select class="row-data" id="attendance-option" name="test_name">
+                                            <% [1,2,3,4,5].forEach((grade)=>{ %>
+                                                <option value="<%= grade %>"><%= parseInt(grade)%></option>
+                                                <% }); %>
+                                            </select>
+                                        </td>
+                                        <td><a name="<%= username %>" onclick="gradingfunction()" class="btn btn-success" href="#">Grade Student</a></td>
+                                    </tr>
+                                    <% count+=1; %>
+                                    <% id+=1; %>
+                                    <% } %>
                                     <% }); %>
-                                </select>
-                            </td>
-                            <td><a class="btn btn-success" href="#">Grade Student</a></td>
-                        </tr>
-                    <% } %>
-                <% }); %>
-            </tbody>
-        </table>
-    </div>
+                                </tbody>
+                            </table>
+                            <div class="button-container">
+                                <a href="/mentor/graded-test/<%= test._id%>" class="btn btn-success"> Test Graded </a>
+                            </div>
+                        </div>
+                        <% } %>
+                        <% }); %>
 </div>
+<script>
+    function gradingfunction(){
+        var username = event.target.name
+        var rowId = event.target.parentNode.parentNode.id
+        var data = document.getElementById(rowId).querySelectorAll('.row-data')
+        var count = data[0].innerHTML
+        var student = data[1].innerHTML
+        var title = data[2].innerHTML
+        var grade = data[3].options[data[3].selectedIndex].text
+        //alert(username+' '+count+' '+student+' '+title+' '+grade)
+        $.post('/mentor/grade-students',{
+            username:username,
+            student:student,
+            title:title,
+            grade:grade
+        });
+    }
+</script>
 <%- include('footer'); -%>
