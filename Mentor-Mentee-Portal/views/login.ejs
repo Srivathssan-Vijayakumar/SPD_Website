@@ -1,4 +1,36 @@
-<%- include ('header'); -%>
+<%- include ('login_header'); -%>
+<div class="login">
+ <h1>Login</h1>
+   <form method="post" action="/">
+     <input type="text" name="username" placeholder="Username" required="required" />
+       <input type="password" name="password" placeholder="Password" required="required" />
+       <div class="radio-button">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" value="Student" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+          Student
+        </label>
+        <input class="form-check-input" type="radio" name="flexRadioDefault" value="Mentor" id="flexRadioDefault2">
+        <label class="form-check-label" for="flexRadioDefault2">
+          Mentor
+        </label>
+        <input class="form-check-input" type="radio" name="flexRadioDefault" value="Admin" id="flexRadioDefault2">
+        <label class="form-check-label" for="flexRadioDefault3">
+          Admin
+        </label>
+        </div>
+       <button type="submit" class="btn btn-primary btn-block btn-large">Sign in</button>
+   </form>
+</div>
+<%- include ('footer'); -%>
+
+
+
+
+
+
+
+
+<!-- <%- include ('header'); -%>
 <form method="post" action="/">
     <div class="form-group">
         <input type="text" class="form-control" name="username" placeholder="Username"/>
@@ -26,4 +58,4 @@
       </div>
     <button type="submit">Login</button>
 </form>
-<%- include ('footer'); -%>
+<%- include ('footer'); -%> -->

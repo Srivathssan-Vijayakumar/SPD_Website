@@ -28,7 +28,7 @@ router.post("/",function(req,res,next){
     }
     else{
         if(type==="Admin"){
-            if(username==="Vathssan" && password==="admin"){
+            if(username==="Admin" && password==="admin"){
                 req.flash('success',"Logged In Successfully")
                 res.locals.user={admin:1};
                 res.redirect("/admin")  
