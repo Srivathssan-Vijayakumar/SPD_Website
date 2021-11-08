@@ -1,0 +1,7 @@
+This is a sample Answer Sheet :
+
+1.The fullform of AWS is Amazon Web Service
+
+2.The Technologies used in this project are nodeJs,ExpressJS,mongoDB,ejs etc
+
+3.The tools used are font-awesome , jquery , data-fancy-box etc

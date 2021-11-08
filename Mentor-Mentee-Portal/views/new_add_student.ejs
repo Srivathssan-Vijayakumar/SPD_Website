@@ -1,0 +1,69 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="admin-navigation col-md-4">
+            <div class="row">
+                <div class="admin-image col-md-2">
+                    <img src="/images/testpicture.jpg"/>
+                </div>
+                <div class="col-md-4">
+                    <h4> Admin Page </h4>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="admin-navigation-area">
+                <ul>
+                    <li class="admin-link-item"><a href="/admin/add-mentor">Add Mentor</a></li>
+                    <li class="admin-link-item active"><a href="/admin/add-student">Add Student</a></li>
+                    <li class="admin-link-item"><a href="/admin/view-feedback">View Feedbacks</a></li>
+                    <li class="admin-link-item"><a href="/admin/dashboard">Dashboard</a></li>
+                    <li class="admin-link-item"><a href="/admin/assign-mentors">Assign Mentors</a></li>
+                    <br/>
+                    <br/>
+                    <li class="admin-link-item"><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="admin-content col-md-8">
+            <div class="row">
+                <form  action="/admin/add-student" method="POST">
+                    <div class="row form-group">
+                        <input class="col-md-12 form-control"  type="text" placeholder="Enter Your Name" name="Name"/>
+                    </div>
+                    <div class="row form-group">
+                        <input class="col-md-12 form-control" type="text" placeholder="Enter Your Username" name="Username"/>
+                    </div>
+                    <div class="row form-group">
+                        <input class="col-md-12 form-control" type="text" placeholder="Enter Your Password" name="Password"/>
+                    </div>
+                    <div class="row form-group">
+                        <input class="col-md-12 form-control" type="text" placeholder="Enter Your Email" name="Email"/>
+                    </div>
+                    <div class="row form-group">
+                        <input class="col-md-12 form-control" type="text" placeholder="Enter Your Roll Number" name="Rollno"/>
+                    </div>
+                    <div class="row form-group">
+                        <input class="col-md-12 form-control" type="text" placeholder="Enter Your Mobile Number" name="PhoneNo"/>
+                    </div>
+                    <div class="row form-group">
+                        <select name="Mentor" aria-label="Default Select Example" aria-placeholder="Choose The Mentor to be assigned" class="col-md-12 form-control">
+                            <% if(mentors){ %>
+                                <% mentors.forEach((mentor) => { %>
+                                    <option value="<%= mentor.Name %>"><%= mentor.Name %> </option>
+                                <% }); %>
+                            <% }else{ %>
+                                <option value=""> --- No Mentors --- </option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <button class="col-md-12 btn btn-primary" type="submit"> Add Student </button >
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer'); -%>

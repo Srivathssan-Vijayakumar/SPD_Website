@@ -1,0 +1,66 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="mentor-navigation col-md-1">
+            <div class="row">
+                <div class="mentor-navigation-area">
+                    <ul>
+                        <br/>
+                        <br/>
+                        <li class="mentor-link-item"><a href="/mentor/classroom"><img src="/images/back.png"/></a></li>
+                        <li class="mentor-link-item"><a href="/logout"><img src="/images/logout.png"/></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mentor-content col-md-10">
+            <div class="row">
+                <table class="mark-attendance-table">
+                    <thead>
+                        <th>S.no</th>
+                        <th>Roll Number</th>
+                        <th>Student Name</th>
+                        <th> Mark Attendance</th>
+                    </thead>
+                    <tbody>
+                        <% var count =1; %>
+                        <% students.forEach((student) =>{ %>
+                            <tr>
+                                <td><%= count %></td>
+                                <td><%= student.Rollno %></td>
+                                <td><%= student.Name %></td>
+                                <td><input type="checkbox" name="attendance-check" id="<%= student.Rollno %>"/>&nbsp;</td>
+                            </tr>
+                            <% count+=1; %>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row mark-attendance-button">
+                <button onclick="onclickfunc()" class="btn btn-outline-dark"> Mark Attendance For Webinar </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var onclickfunc;
+    $(document).ready(()=>{
+        onclickfunc=()=>{
+            var checkboxes = $("input:checkbox[name='attendance-check']").toArray()
+            var attendance = []
+            var noattendance = []
+            checkboxes.forEach((checkbox)=>{
+                if(checkbox.checked){
+                    attendance.push(checkbox.id)
+                }else{
+                    noattendance.push(checkbox.id)
+                }
+            });
+            $.post('/mentor/attendance/<%= webinar%>',{
+                attendance:JSON.stringify(attendance),
+                noattendance:JSON.stringify(noattendance)
+            })
+        }
+    })
+</script>
+<%- include('footer'); -%>

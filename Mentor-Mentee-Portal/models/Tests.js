@@ -7,6 +7,10 @@ const TestSchema = mongoose.Schema({
         required:true,
         unique:true,
     },
+    Mentor:{
+        type:String,
+        required:true
+    },
     Date:{
         type:String,
         required:true,
@@ -19,15 +23,23 @@ const TestSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    Mentor:{
-        type:String,
-        required:true
-    },
     IsGraded:{
         type:Boolean,
         required:true,
         default:false
     },
+    Classroom:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true
+    },
+    FileId:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+    },
+    FileName:{
+        type:String,
+        required:true
+    }
 });
 
 const Tests = module.exports= mongoose.model('Tests',TestSchema)

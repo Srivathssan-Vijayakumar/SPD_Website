@@ -1,0 +1,134 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="home-row row">
+        <div class="mentor-navigation col-md-4">
+            <div class="row">
+                <div class="mentor-image col-md-2">
+                    <img src="/images/testpicture.jpg"/>
+                </div>
+                <div class="col-md-4">
+                    <h4> Mentor Page </h4>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="mentor-navigation-area">
+                    <ul>
+                        <li class="mentor-link-item"><a href="/mentor/classroom">My Classrooms</a></li>
+                        <li class="mentor-link-item"><a href="/mentor/dashboard">Dashboard</a></li>
+                        <br/>
+                        <br/>
+                        <li class="mentor-link-item"><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mentor-content col-md-8">
+            <div class="row">
+                <div class="col-md-10">
+                    <canvas id="myChart1"></canvas>
+                </div>
+                <div class="col-md-10">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var labels1 =[];
+    var data1=[];
+    var data2=[];
+    $.get('/mentor/get-students',function(data,status){
+        labels1 =data['labels'];
+        data1=data['data1'];
+        data2=data['data2'];
+    }).then(()=>{
+        const Data1 = {
+        labels: labels1,
+        datasets: [{
+            label: 'Student Names',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: data1,
+        }]
+        };
+        const Data2 = {
+            labels: labels1,
+            datasets: [{
+                label: 'Student Names',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: data2,
+            }]
+            };
+        const config1 = {
+            type: 'line',
+            data: Data1,
+            options: {
+            transitions: {
+                show: {
+                animations: {
+                    x: {
+                    from: 0
+                    },
+                    y: {
+                    from: 0
+                    }
+                }
+                },
+                hide: {
+                animations: {
+                    x: {
+                    to: 0
+                    },
+                    y: {
+                    to: 0
+                    }
+                }
+                }
+            }
+            }
+        };
+        const config2 = {
+            type: 'line',
+            data: Data2,
+            options: {
+            transitions: {
+                show: {
+                animations: {
+                    x: {
+                    from: 0
+                    },
+                    y: {
+                    from: 0
+                    }
+                }
+                },
+                hide: {
+                animations: {
+                    x: {
+                    to: 0
+                    },
+                    y: {
+                    to: 0
+                    }
+                }
+                }
+            }
+            }
+        };
+        const myChart1 = new Chart(
+        document.getElementById('myChart1'),
+        config1
+        );
+        const myChart2 = new Chart(
+        document.getElementById('myChart2'),
+        config2
+        );
+    })
+    
+  </script>
+<%- include('footer'); -%>

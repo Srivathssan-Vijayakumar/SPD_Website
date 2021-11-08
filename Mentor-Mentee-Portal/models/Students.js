@@ -30,11 +30,6 @@ const StudentSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    NumOfWebinars:{
-        type:Number,
-        required:true,
-        default:0,
-    },
     Mentor:{
         type:String,
         // required:true,
@@ -49,6 +44,10 @@ const StudentSchema = mongoose.Schema({
         type:String,
         required:true,
         default:'noimage'
+    },
+    TotalGrades:{
+        type:Number,
+        default:0.0
     }
 });
 const Students = module.exports = mongoose.model('Students',StudentSchema)

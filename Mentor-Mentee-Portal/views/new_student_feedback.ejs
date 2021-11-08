@@ -1,0 +1,80 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row home-row">
+            <div class="student-navigation-bar col-6 col-md-4">
+                <div class="row student-profile">
+                    <div class="col-md-4 student-profile-image">
+                        <img src="/images/testpicture.jpg" />      
+                    </div>
+                    <h4 class="col-md-8"> Guest Login </h4>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div class="navigation row">
+                    <nav>
+                        <ul class="navigation-bar">
+                            <li class="link-item"> <a href="/student/classroom"> Classrooms </a></li>
+                            <li class="link-item student-active"> <a href="/student/feedback"> Feedback </a></li>
+                            <li class="link-item"> <a href="/student/profile"> Profile </a></li>
+                            <br/>
+                            <br/>
+                            <li class="link-item"> <a href="/logout"> Logout </a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="student-home col-md-8">
+                <div class="student-feedback-form row">
+                    <form  action="/student/feedback" method="POST">
+                        <div class="row form-group">
+                            <input class="form-control col-md-12" type="text" name="Student" value="<%= student.Name%>" readonly/>
+                        </div>
+                        <div class="row form-group">
+                            <input class="col-md-12 form-control" name="mentor" type="text" placeholder="Enter Your Mentor" value="<%= mentor.Name%>" readonly/>
+                        </div>
+                        <div class="row form-group">
+                            <select name="webinar" class="col-md-12 form-control">
+                                <% webinars.forEach((webinar)=>{ %>
+                                    <option class="Feedback-mentor-option" value="<%= webinar.Title %>"><%= webinar.Title %></option>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <div class="row form-group">
+                            <textarea placeholder="Your Feedback" class="form-control col-md-12" type="text" name="feedback"></textarea>
+                        </div>
+                        <div class="row form-group">
+                            <p> Your Rating : </p>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="1">
+                                <label class="form-check-label" for="inlineRadio1">1(Very Poor)</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineRadio2" value="2">
+                                <label class="form-check-label" for="inlineRadio2">2(Not Bad)</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="3" >
+                                <label class="form-check-label" for="inlineRadio3">3(Average)</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineRadio4" value="4" >
+                                <label class="form-check-label-light" for="inlineRadio4">4(Good)</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="rating" id="inlineRadio5" value="5" >
+                                <label class="form-check-label" for="inlineRadio5">5(Excellent)</label>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <button type="submit" class="btn btn-outline-dark">
+                                Submit Feedback
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
+<%- include('footer'); -%>

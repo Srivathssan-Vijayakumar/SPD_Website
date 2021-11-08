@@ -1,0 +1,57 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="mentor-navigation col-md-4">
+            <div class="row">
+                <div class="mentor-image col-md-2">
+                    <img src="/images/testpicture.jpg"/>
+                </div>
+                <div class="col-md-4">
+                    <h4> Mentor Page </h4>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="mentor-navigation-area">
+                    <ul>
+                        <li class="mentor-link-item mentor-active"><a href="/mentor/classroom">My Classrooms</a></li>
+                        <li class="mentor-link-item"><a href="/mentor/dashboard">Dashboard</a></li>
+                        <br/>
+                        <br/>
+                        <li class="mentor-link-item"><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mentor-content col-md-8">
+            <div class="row">
+                <% if(classrooms.length>0 ){ %>
+                    <div class="mentor-classroom-grid-container">
+                        <% classrooms.forEach((classroom) => { %>
+                            <div class="classroom-card">
+                                <div class="row clasroom-card-top">
+                                    <img src="/images/testpicture.jpg" class="mentor-class-card-top"/>
+                                </div>
+                                <div class="classroom-card-body">
+                                    <h2 class="text-center">
+                                        <a href="/mentor/classroom/<%= classroom._id%>/test"><%= classroom.Title %></a>
+                                    </h2>
+                                </div>
+                            </div>
+                        <% });  %>
+                    </div>
+                <% }else{ %>
+                    <h2 class="text-center">
+                        No classrooms Added
+                    </h2>
+                <% } %>
+            </div>
+            <div class="classroom-add-button row">
+                    <a href="/mentor/add-classroom" class="col-md-2"><img src="/images/add_button.png" class="add-classroom-button" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer'); -%>

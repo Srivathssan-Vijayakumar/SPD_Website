@@ -1,0 +1,184 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row home-row">
+        <div class="admin-navigation col-md-4">
+            <div class="row">
+                <div class="admin-image col-md-2">
+                    <img src="/images/testpicture.jpg"/>
+                </div>
+                <div class="col-md-4">
+                    <h4> Admin Page </h4>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="admin-navigation-area">
+                <ul>
+                    <li class="admin-link-item"><a href="/admin/add-mentor">Add Mentor</a></li>
+                    <li class="admin-link-item"><a href="/admin/add-student">Add Student</a></li>
+                    <li class="admin-link-item"><a href="/admin/view-feedback">View Feedbacks</a></li>
+                    <li class="admin-link-item"><a href="/admin/dashboard">Dashboard</a></li>
+                    <li class="admin-link-item"><a href="/admin/change-mentor">Change Mentor</a></li>
+                    <br/>
+                    <br/>
+                    <li class="admin-link-item"><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="admin-content col-md-8">
+            <div class="home-row row">
+                <div class="col-md-10">
+                    <canvas id="myChart1"></canvas>
+                </div>
+                <div class="col-md-10">
+                    <canvas id="myChart2"></canvas>
+                </div>
+                <div class="col-md-10">
+                    <canvas id="myChart3"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var labels1 =[];
+    var labels2=[];
+    var labels3=[];
+    var data1=[];
+    var data2=[];
+    var data3=[];
+    $.get('/admin/get-students',function(data,status){
+        labels1 =data['labels'];
+        labels2=data['labels2'];
+        data1=data['data1'];
+        data2=data['data2'];
+        data3=data['data3'];
+    }).then(()=>{
+        const Data1 = {
+        labels: labels1,
+        datasets: [{
+            label: 'Student Names',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: data1,
+        }]
+        };
+        const Data2 = {
+            labels: labels1,
+            datasets: [{
+                label: 'Student Names',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: data2,
+            }]
+            };
+            const Data3 = {
+                labels: labels2,
+                datasets: [{
+                    label: 'Mentor Names',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: data3,
+                }]
+                };
+        const config1 = {
+            type: 'line',
+            data: Data1,
+            options: {
+            transitions: {
+                show: {
+                animations: {
+                    x: {
+                    from: 0
+                    },
+                    y: {
+                    from: 0
+                    }
+                }
+                },
+                hide: {
+                animations: {
+                    x: {
+                    to: 0
+                    },
+                    y: {
+                    to: 0
+                    }
+                }
+                }
+            }
+            }
+        };
+        const config2 = {
+            type: 'line',
+            data: Data2,
+            options: {
+            transitions: {
+                show: {
+                animations: {
+                    x: {
+                    from: 0
+                    },
+                    y: {
+                    from: 0
+                    }
+                }
+                },
+                hide: {
+                animations: {
+                    x: {
+                    to: 0
+                    },
+                    y: {
+                    to: 0
+                    }
+                }
+                }
+            }
+            }
+        };
+        const config3 = {
+            type: 'line',
+            data: Data3,
+            options: {
+            transitions: {
+                show: {
+                animations: {
+                    x: {
+                    from: 0
+                    },
+                    y: {
+                    from: 0
+                    }
+                }
+                },
+                hide: {
+                animations: {
+                    x: {
+                    to: 0
+                    },
+                    y: {
+                    to: 0
+                    }
+                }
+                }
+            }
+            }
+        };
+        const myChart1 = new Chart(
+        document.getElementById('myChart1'),
+        config1
+        );
+        const myChart2 = new Chart(
+        document.getElementById('myChart2'),
+        config2
+        );
+        const myChart3 = new Chart(
+        document.getElementById('myChart3'),
+        config3
+        );
+    })
+    
+  </script>
+  <%- include('footer'); -%>

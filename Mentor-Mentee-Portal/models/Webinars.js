@@ -5,6 +5,10 @@ const WebinarSchema = mongoose.Schema({
         required:true,
         unique:true,
     },
+    Mentor:{
+        type:String,
+        required:true
+    },
     Date:{
         type:String,
         required:true,
@@ -17,10 +21,14 @@ const WebinarSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    Mentor:{
-        type:String,
-        required:true
+    IsMarked:{
+        type:Boolean,
+        default:false,
     },
+    Classroom:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true
+    }
 });
 
 const Webinars = module.exports= mongoose.model('Webinars',WebinarSchema)

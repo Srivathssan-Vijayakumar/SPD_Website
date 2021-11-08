@@ -1,0 +1,57 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row home-row">
+            <div class="student-navigation-bar col-6 col-md-4">
+                <div class="row student-profile">
+                    <div class="col-md-4 student-profile-image">
+                        <img src="/images/testpicture.jpg" />      
+                    </div>
+                    <h4 class="col-md-8"> Guest Login </h4>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div class="navigation row">
+                    <nav>
+                        <ul class="navigation-bar">
+                            <li class="link-item"> <a href="/student/classroom"> Classrooms </a></li>
+                            <li class="link-item"> <a href="/student/feedback"> Feedback </a></li>
+                            <li class="link-item student-active"> <a href="/student/profile"> Profile </a></li>
+                            <br/>
+                            <br/>
+                            <li class="link-item"> <a href="/logout"> Logout </a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="student-home col-md-8">
+                <div class="edit-profile-form row">
+                    <form action="" method="POST">
+                        <div class="row form-group">
+                            <input class="col-md-12 form-control" type="text" name="rollno" value="<%= student.Rollno%>" placeholder="Enter Roll number" readonly>
+                        </div>
+                        <div class="row form-group">
+                            <input class="col-md-12 form-control" type="text" name="name" value="<%= student.Name%>" placeholder="Enter Name">
+                        </div>
+                        <div class="row form-group">
+                            <input class="col-md-12 form-control" type="text" name="username" value="<%= student.Username%>" placeholder="Enter Username" >
+                        </div>
+                        <div class="row form-group">
+                            <input class="col-md-12 form-control" type="text" name="email" value="<%= student.Email%>" placeholder="Enter Email ">
+                        </div>
+                        <div class="row form-group">
+                            <input class="col-md-12 form-control" type="text" name="password" value="<%= student.Password%>" placeholder="Enter Password">
+                        </div>
+                        <div class="row form-group">
+                            <input class="col-md-12 form-control" type="text" name="phoneno" value="<%= student.PhoneNo%>" placeholder="Enter Mobile number">
+                        </div>
+                        <div class="row form-group">
+                            <button class="btn btn-outline-danger edit-profile-button" type="submit" > Edit Profile </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
+<%- include('footer'); -%>

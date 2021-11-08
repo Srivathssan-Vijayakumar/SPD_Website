@@ -1,0 +1,105 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row home-row">
+            <div class="student-navigation-bar col-6 col-md-4">
+                <div class="row student-profile">
+                    <div class="col-md-4 student-profile-image">
+                        <img src="/images/testpicture.jpg" />      
+                    </div>
+                    <h4 class="col-md-8"> Guest Login </h4>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div class="navigation row">
+                    <nav>
+                        <ul class="navigation-bar">
+                            <li class="link-item"> <a href="/student/classroom"> Classrooms </a></li>
+                            <li class="link-item"> <a href="/student/feedback"> Feedback </a></li>
+                            <li class="link-item student-active"> <a href="/student/profile"> Profile </a></li>
+                            <br/>
+                            <br/>
+                            <li class="link-item"> <a href="/logout"> Logout </a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="student-home col-md-8">
+                <div class="row">
+                    <div class="col-md-12 student-profile-container">
+                        <div class="row student-profiles-image">
+                            <div class="col-md-2 student-image">
+                                <img src="/images/testpicture.jpg">
+                            </div>
+                            <div class="col-md-4 student-name">
+                                <h4 class="student-profile-name"><%= student.Rollno%> - <%= student.Name %></h4>
+                            </div>
+                        </div>
+                        <div class="row student-profile-details">
+                            <div class="student-profile-detail-row row">
+                                <div class="col-md-6 title">
+                                    <h5>Username : </h5>
+                                </div>
+                                <div class="col-md-6 value">
+                                    <p><%= student.Username %></p>
+                                </div>
+                            </div>
+                            <div class="student-profile-detail-row row">
+                                <div class="col-md-6 title">
+                                    <h5>Email : </h5>
+                                </div>
+                                <div class="col-md-6 value">
+                                    <p><%= student.Email %></p>
+                                </div>
+                            </div>
+                            <div class="student-profile-detail-row row">
+                                <div class="col-md-6 title">
+                                    <h5>Mobile Number : </h5>
+                                </div>
+                                <div class="col-md-6 value">
+                                    <p><%= student.PhoneNo %></p>
+                                </div>
+                            </div>
+                            <div class="student-profile-detail-row row">
+                                <div class="col-md-6 title">
+                                    <h5>Password : </h5>
+                                </div>
+                                <div class="col-md-6 value">
+                                    <p><%= student.Password %></p>
+                                </div>
+                            </div>
+                            <div class="student-profile-detail-row row">
+                                <div class="col-md-6 title">
+                                    <h5>Mentor : </h5>
+                                </div>
+                                <div class="col-md-6 value">
+                                    <p><%= student.Mentor %></p>
+                                </div>
+                            </div>
+                            <div class="student-profile-detail-row row">
+                                <div class="col-md-6 title">
+                                    <h5>Attendance Percentage : </h5>
+                                </div>
+                                <div class="col-md-6 value">
+                                    <p><%= parseFloat(student.Attendance).toFixed(2) %> %</p>
+                                </div>
+                            </div>
+                            <div class="student-profile-detail-row row">
+                                <div class="col-md-6 title">
+                                    <h5>Grade Percentage : </h5>
+                                </div>
+                                <div class="col-md-6 value">
+                                    <p><%= parseFloat(student.TotalGrades).toFixed(2) %></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row edit-profile-button">
+                            <a href="/student/edit-profile/<%= student.Rollno %>" class="btn btn-outline-danger"> Edit Profile </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<%- include('footer'); -%>

@@ -1,0 +1,136 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row home-row">
+            <div class="student-navigation-bar col-6 col-md-1">
+                <div class="navigation row">
+                    <nav>
+                        <ul class="navigation-bar">
+                            <li class="mentor-link-item student-active"><a href="/student/classroom/<%= classroom%>/test"><img src="/images/test.png" class="test-navigation-img"/></a></li>
+                            <li class="mentor-link-item"><a href="/student/classroom/<%= classroom%>/webinars"><img src="/images/webinar.png" class="test-navigation-img"/></a></li>
+                            <br/>
+                            <br/>
+                            <li class="mentor-link-item"><a href="/student/classroom"><img src="/images/back.png"/></a></li>
+                            <li class="mentor-link-item"><a href="/logout"><img src="/images/logout.png"/></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="mentor-content col-md-10">
+                <div class="row">
+                    <% if(tests && tests.length>0 ){ %>
+                        <div class="mentor-tests-container">
+                            <%tests.forEach((test) =>{ %>
+                                <div class="row">
+                                    <div class="mentor-test-card col-md-12">
+                                        <h3 class="test-title"><%= test.Title %></h3>
+                                        <button id="<%= test.Title%>" class="btn btn-outline-dark test-card-button" onclick="onclickfunc()">View Details </button>
+                                    </div>
+                                </div>
+                                <div  class="row">
+                                    <div id="<%= test.Title%>-details"class="col-md-12 mentor-test-details">
+                                        <div class="row">
+                                            <div class="title col-md-6">
+                                                Scheduled Date : 
+                                            </div>
+                                            <div class="value col-md-6">
+                                                <%= test.Date %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="title col-md-6">
+                                                Scheduled Time : 
+                                            </div>
+                                            <div class="value col-md-6">
+                                                <%= test.Time %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 test-file">
+                                                <a class="file-container " style="cursor:pointer;" onclick="showtest()" id="<%= test.FileId %>" >
+                                                    <%= test.FileName%>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <% if(answers.length>0 && answertestids.length>0 && answertestids.indexOf(test._id.toString()) >-1){ %>
+                                                <% var answer = answers[answertestids.indexOf(test._id.toString())] %>
+                                                <div class="col-md-3 test-file">
+                                                    <a class="file-container " style="cursor:pointer;" onclick="showtest()" id="<%= answer.AnswerFileId %>" >
+                                                        <%= answer.AnswerFileName%>
+                                                    </a>
+                                                </div>  
+                                            <% }else{ %>
+                                                <div class="test-answer-upload col-md-3">
+                                                    <form action="/answer-upload/<%= test._id%>" method="POST" enctype="multipart/form-data">
+                                                        <div class="form-group row">
+                                                            <div class="input-group">
+                                                                <input type="file" name="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <button class="btn btn-outline-dark answer-upload-button" type="submit">
+                                                                Upload Answer File
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        </div>
+                    <% } else {%>
+                        <div class="col-md-6 m-auto">
+                            <h2 class="text-center">
+                                No Tests Added!!
+                            </h2>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="popup" id="popup-test">
+    <div class="overlay">
+        <div onclick="hidetest()" class="close-btn">&times; </div>
+        <div class="content" id="popupcontent">
+            <h1 id="title">Title</h1>
+            <p id="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non vel ut perferendis natus sequi omnis illum temporibus ea cumque! Labore animi placeat iste alias vitae quo quod repellendus neque perferendis blanditiis excepturi iure porro magni eligendi laborum nobis, enim iusto debitis vel et est? Deserunt laborum porro iusto. Error, ipsam?</p>
+        </div>
+    </div>
+</div>
+<script>
+    var onclickfunc;
+    var showtest;
+    var hidetest;
+    var content;
+      $(document).ready(()=>{
+            onclickfunc =()=>{
+                event.preventDefault()
+                event.stopPropagation()
+                var id=event.target.id+'-details'
+                var details = $("#"+id)
+                details.slideToggle(
+                    2000,
+                    'swing'
+                )
+            }
+            showtest=()=>{
+                var id = event.target.id;
+                var title = $('#'+id).html()
+                $.get('/files/'+id,(data,status)=>{
+                    content=data['content']
+                }).then(()=>{
+                    $('#title').html(title);
+                    $('#content').html(content);
+                    $('#popup-test').addClass('active');
+                })
+                
+            }
+            hidetest=()=>{
+                $('#popup-test').removeClass('active');
+            }
+        })
+</script>
+<%- include('footer'); -%>

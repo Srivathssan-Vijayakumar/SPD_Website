@@ -1,0 +1,7 @@
+This is a sample question paper :
+
+1. What is the fullform of AWS?
+
+2.What are the technologies used in this project ?
+
+3.What are the tools used for frontend and backend ?

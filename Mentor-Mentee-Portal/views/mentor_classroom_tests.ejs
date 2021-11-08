@@ -1,0 +1,129 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="mentor-navigation col-md-1">
+            <div class="row">
+                <div class="mentor-navigation-area">
+                    <ul>
+                        <li class="mentor-link-item mentor-active"><a href="/mentor/classroom/<%= classroom%>/test"><img src="/images/test.png" class="test-navigation-img"/></a></li>
+                        <li class="mentor-link-item"><a href="/mentor/classroom/<%= classroom%>/webinars"><img src="/images/webinar.png" class="test-navigation-img"/></a></li>
+                        <br/>
+                        <br/>
+                        <li class="mentor-link-item"><a href="/mentor/classroom"><img src="/images/back.png"/></a></li>
+                        <li class="mentor-link-item"><a href="/logout"><img src="/images/logout.png"/></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mentor-content col-md-10">
+            <div class="row">
+                <% if(tests && tests.length>0 ){ %>
+                    <div class="mentor-tests-container">
+                        <%tests.forEach((test) =>{ %>
+                            <div class="row">
+                                <div class="mentor-test-card col-md-12">
+                                    <h3 class="test-title"><%= test.Title %></h3>
+                                    <button id="<%= test.Title%>" class="btn btn-outline-dark test-card-button" onclick="onclickfunc()">View Details </button>
+                                </div>
+                            </div>
+                            <div  class="row">
+                                <div id="<%= test.Title%>-details"class="col-md-12 mentor-test-details">
+                                    <div class="row">
+                                        <div class="title col-md-6">
+                                            Scheduled Date : 
+                                        </div>
+                                        <div class="value col-md-6">
+                                            <%= test.Date %>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="title col-md-6">
+                                            Scheduled Time : 
+                                        </div>
+                                        <div class="value col-md-6">
+                                            <%= test.Time %>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3 test-file">
+                                            <a onclick="showtest()" class="file-container " style="cursor:pointer;" id="<%= test.FileId%>" >
+                                                <%= test.FileName%>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <% if(!test.IsGraded){ %>
+                                            <div class="col-md-3">
+                                                <a class="btn btn-outline-dark" href="/mentor/grade-test/<%= test._id%>">
+                                                    Grade Test
+                                                </a>
+                                            </div>
+                                        <% }else{ %>
+                                            <div class="col-md-3">
+                                                <a class="btn btn-outline-dark" href="/mentor/grade-test/<%= test._id%>">
+                                                    Edit Test Grades
+                                                </a>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } else {%>
+                    <div class="col-md-6 m-auto">
+                        <h2 class="text-center">
+                            No Tests Added!!
+                        </h2>
+                    </div>
+                <% } %>
+            </div>
+            <div class="classroom-add-button row">
+                <a href="/mentor/schedule-test/<%= classroom%>" class="col-md-2"><img src="/images/add_button.png" class="add-classroom-button" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup" id="popup-test">
+    <div class="overlay">
+        <div onclick="hidetest()" class="close-btn">&times; </div>
+        <div class="content" id="popupcontent">
+            <h1 id="title">Title</h1>
+            <p id="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non vel ut perferendis natus sequi omnis illum temporibus ea cumque! Labore animi placeat iste alias vitae quo quod repellendus neque perferendis blanditiis excepturi iure porro magni eligendi laborum nobis, enim iusto debitis vel et est? Deserunt laborum porro iusto. Error, ipsam?</p>
+        </div>
+    </div>
+</div>
+<script>
+    var onclickfunc;
+    var showtest;
+    var hidetest;
+    var content;
+      $(document).ready(()=>{
+            onclickfunc =()=>{
+                event.preventDefault()
+                event.stopPropagation()
+                var id=event.target.id+'-details'
+                var details = $("#"+id)
+                details.slideToggle(
+                    2000,
+                    'swing'
+                )
+            }
+            showtest=()=>{
+                var id = event.target.id;
+                var title = $('#'+id).html()
+                $.get('/files/'+id,(data,status)=>{
+                    content=data['content']
+                }).then(()=>{
+                    $('#title').html(title);
+                    $('#content').html(content);
+                    $('#popup-test').addClass('active');
+                })
+                
+            }
+            hidetest=()=>{
+                $('#popup-test').removeClass('active');
+            }
+        })
+</script>
+<%- include('footer'); -%>

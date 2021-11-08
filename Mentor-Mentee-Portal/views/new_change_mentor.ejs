@@ -1,0 +1,59 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="admin-navigation col-md-4">
+            <div class="row">
+                <div class="admin-image col-md-2">
+                    <img src="/images/testpicture.jpg"/>
+                </div>
+                <div class="col-md-4">
+                    <h4> Admin Page </h4>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="admin-navigation-area">
+                <ul>
+                    <li class="admin-link-item"><a href="/admin/add-mentor">Add Mentor</a></li>
+                    <li class="admin-link-item"><a href="/admin/add-student">Add Student</a></li>
+                    <li class="admin-link-item"><a href="/admin/view-feedback">View Feedbacks</a></li>
+                    <li class="admin-link-item"><a href="/admin/dashboard">Dashboard</a></li>
+                    <li class="admin-link-item active"><a href="/admin/change-mentor">Change Mentor</a></li>
+                    <br/>
+                    <br/>
+                    <li class="admin-link-item"><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="admin-content col-md-8">
+            <div class="row">
+                <div class="change-mentor-grid-container">
+                    <% students.forEach((student)=>{ %>
+                        <div class="change-mentor-card">
+                            <form action="/admin/change-mentor/" method="POST">
+                                <div class="row form-group">
+                                    <input name="name"class="col-md-12 form-control" type="text" value="<%= student.Name %>" readonly/>
+                                </div>
+                                <div class="row form-group">
+                                    <input name="rollnumber" class="col-md-12 form-control" type="text" value="<%= student.Rollno %>" readonly/>
+                                </div>
+                                <div class="row form-group">
+                                    <select name="Mentor" class="col-md-12 form-control">
+                                        <% mentors.forEach((mentor)=>{ %>
+                                            <option class="change-mentor-option" value="<%= mentor.Name %>"><%= mentor.Name %></option>
+                                        <% }); %>
+                                    </select>    
+                                </div>
+                                <div class="row form-group">
+                                    <button type="submit" class="btn btn-dark btn-outline"> Change Mentor </button>
+                                </div>
+                            </form>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer'); -%>

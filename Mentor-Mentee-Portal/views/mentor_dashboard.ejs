@@ -1,0 +1,63 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="mentor-navigation col-md-4">
+            <div class="row">
+                <div class="mentor-image col-md-2">
+                    <img src="/images/testpicture.jpg"/>
+                </div>
+                <div class="col-md-4">
+                    <h4> Mentor Page </h4>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="mentor-navigation-area">
+                    <ul>
+                        <li class="mentor-link-item"><a href="/mentor/classroom">My Classrooms</a></li>
+                        <li class="mentor-link-item mentor-active"><a href="/mentor/dashboard">Dashboard</a></li>
+                        <br/>
+                        <br/>
+                        <li class="mentor-link-item"><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mentor-content col-md-8">
+            <div class="row">
+                <div class="mentor-dashboard-container">
+                    <div class="attendance-dashboard">
+                        <% var count=1; %>
+                        <ul class="list-group">
+                           <% attendanceList.forEach((student)=>{%>
+                            <li class="list-group-item">
+                                <h5><%= count %></h5>
+                                <h5><%= student.Rollno %></h5>
+                                <h5><%= student.Name %></h5>
+                                <h5><%= parseFloat(student.Attendance).toFixed(2) %></h5>
+                            </li>
+                            <% count+=1; %>
+                           <% }); %> 
+                        </ul>
+                    </div>
+                    <div class="grade-dashboard ">
+                        <ul class="list-group">
+                            <% var count=1; %>
+                            <% gradesList.forEach((student)=>{%>
+                                <li class="list-group-item">
+                                    <h5><%= count %></h5>
+                                    <h5><%= student.Rollno %></h5>
+                                    <h5><%= student.Name %></h5>
+                                    <h5><%= parseFloat(student.TotalGrades).toFixed(2) %></h5>
+                                </li>
+                                <% count+=1; %>
+                            <% }); %> 
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer'); -%>

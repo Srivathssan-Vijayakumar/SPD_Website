@@ -1,0 +1,56 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row home-row">
+            <div class="student-navigation-bar col-6 col-md-4">
+                <div class="row student-profile">
+                    <div class="col-md-2 mentor-image">
+                        <img src="/images/testpicture.jpg" />      
+                    </div>
+                    <div class="col-md-4"> 
+                        <h4>Student Login</h4> 
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div class="navigation row">
+                    <nav>
+                        <ul class="navigation-bar">
+                            <li class="link-item student-active"> <a href="/student/classroom"> Classrooms </a></li>
+                            <li class="link-item"> <a href="/student/feedback"> Feedback </a></li>
+                            <li class="link-item"> <a href="/student/profile"> Profile </a></li>
+                            <br/>
+                            <br/>
+                            <li class="link-item"> <a href="/logout"> Logout </a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="mentor-content col-md-8">
+                <div class="row">
+                    <% if(classrooms.length>0 ){ %>
+                        <div class="mentor-classroom-grid-container">
+                            <% classrooms.forEach((classroom) => { %>
+                                <div class="classroom-card">
+                                    <div class="row clasroom-card-top">
+                                        <img src="/images/testpicture.jpg" class="mentor-class-card-top"/>
+                                    </div>
+                                    <div class="classroom-card-body">
+                                        <h2 class="text-center">
+                                            <a href="/student/classroom/<%= classroom._id%>/test"><%= classroom.Title %></a>
+                                        </h2>
+                                    </div>
+                                </div>
+                            <% });  %>
+                        </div>
+                    <% }else{ %>
+                        <h2 class="text-center">
+                            No classrooms Added
+                        </h2>
+                    <% } %>
+                </div>
+            </div>
+    </div>
+</div>
+<%- include('footer'); -%>

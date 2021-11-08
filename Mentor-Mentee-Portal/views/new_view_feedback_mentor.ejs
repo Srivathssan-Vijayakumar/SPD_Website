@@ -1,0 +1,65 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="admin-navigation col-md-4">
+            <div class="row">
+                <div class="admin-image col-md-2">
+                    <img src="/images/testpicture.jpg"/>
+                </div>
+                <div class="col-md-4">
+                    <h4> Admin Page </h4>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="admin-navigation-area">
+                <ul>
+                    <li class="admin-link-item"><a href="/admin/add-mentor">Add Mentor</a></li>
+                    <li class="admin-link-item"><a href="/admin/add-student">Add Student</a></li>
+                    <li class="admin-link-item active"><a href="/admin/view-feedback">View Feedbacks</a></li>
+                    <li class="admin-link-item"><a href="/admin/dashboard">Dashboard</a></li>
+                    <li class="admin-link-item"><a href="/admin/change-mentor">Change Mentor</a></li>
+                    <br/>
+                    <br/>
+                    <li class="admin-link-item"><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="admin-content col-md-8">
+            <div class="row">
+                <div class="view-feedback-mentor-container">
+                    <% if(webinars.length>0) { %>
+                        <% webinars.forEach((webinar)=>{ %>
+                            <div class="view-feedback-card col-md-12">
+                                <div class="row">
+                                    <div class="left col-md-4">
+                                        
+                                    </div>
+                                    <div class="right col-md-8">
+                                        <h4> <%= webinar.Title %> Details </h4>
+                                        <div class="row">
+                                            <h6 class="col-md-6 title"> Scheduled Date : </h6>
+                                            <p class="col-md-6 value"> <%= webinar.Date%></p>
+                                        </div>
+    
+                                        <div class="row">
+                                            <h6 class="col-md-6 title"> Scheduled Time : </h6>
+                                            <p class="col-md-6 value"> <%= webinar.Time%></p>
+                                        </div>
+                                        <div class="row">
+                                            <button class="view-feedback-btn btn btn-danger"> <a href="/admin/view-feedback/<%= mentor %>/<%= webinar.Title%>">View Feedback </a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <h4> No Webinars Scheduled </h4>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer'); -%>

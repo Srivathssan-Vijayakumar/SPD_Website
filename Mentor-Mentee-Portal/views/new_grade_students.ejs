@@ -1,0 +1,96 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="mentor-navigation col-md-1">
+            <div class="row">
+                <div class="mentor-navigation-area">
+                    <ul>
+                        <br/>
+                        <br/>
+                        <li class="mentor-link-item"><a href="/mentor/classroom"><img src="/images/back.png"/></a></li>
+                        <li class="mentor-link-item"><a href="/logout"><img src="/images/logout.png"/></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mentor-content col-md-10">
+            <div class="row">
+                <table class="mark-attendance-table">
+                    <thead>
+                        <th>S.no</th>
+                        <th>Roll Number</th>
+                        <th>Answer Script</th>
+                        <th> Grades </th>
+                    </thead>
+                    <tbody>
+                        <% var count =1; %>
+                        <% answers.forEach((answer) =>{ %>
+                            <tr>
+                                <td class="grade-row"><%= count %></td>
+                                <td class="grade-row"><%= answer.StudentRollNumber %></td>
+                                <td class="grade-row"><a id="<%= answer.AnswerFileId%>" style="cursor:pointer;" onclick="showtest()"> <%= answer.AnswerFileName%></a> </td>
+                                <td class="grade-input grade-row"><input type="text" onchange="onchangefunc()" name="grades" value="<%= answer.Grade%>" id="<%= answer.StudentRollNumber %>"/></td>
+                            </tr>
+                            <% count+=1; %>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row mark-attendance-button">
+                <button onclick="onclickfunc()" class="btn btn-outline-dark"> Grade Students For Test </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup" id="popup-test">
+    <div class="overlay">
+        <div onclick="hidetest()" class="close-btn">&times; </div>
+        <div class="content" id="popupcontent">
+            <h1 id="title">Title</h1>
+            <p id="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non vel ut perferendis natus sequi omnis illum temporibus ea cumque! Labore animi placeat iste alias vitae quo quod repellendus neque perferendis blanditiis excepturi iure porro magni eligendi laborum nobis, enim iusto debitis vel et est? Deserunt laborum porro iusto. Error, ipsam?</p>
+        </div>
+    </div>
+</div>
+<script>
+    var onclickfunc;
+    var onchangefunc;
+    var showtest;
+    var hidetest;
+    var content;
+    $(document).ready(()=>{
+        var gradeboxes=[]
+        onchangefunc=()=>{
+            event.target.defaultValue = event.target.value
+        }
+        showtest=()=>{
+            var id = event.target.id;
+            var title = $('#'+id).html()
+            $.get('/files/'+id,(data,status)=>{
+                content=data['content']
+            }).then(()=>{
+                $('#title').html(title);
+                $('#content').html(content);
+                $('#popup-test').addClass('active');
+            })
+            
+        }
+        hidetest=()=>{
+            $('#popup-test').removeClass('active');
+        }
+        onclickfunc=()=>{
+            gradeboxes = $("input:text[name='grades']").toArray()
+            var grades =[]
+            gradeboxes.forEach((gradebox)=>{
+                var gradeObj = {
+                    'Student':gradebox.id,
+                    'Grade':gradebox.defaultValue
+                }
+                grades.push(gradeObj)
+            })
+            $.post('/mentor/grade-test/<%= testid %>',{
+                'grades':JSON.stringify(grades)
+            })
+        }
+    })
+</script>
+<%- include('footer'); -%>

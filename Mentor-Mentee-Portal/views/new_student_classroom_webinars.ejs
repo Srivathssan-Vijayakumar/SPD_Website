@@ -1,0 +1,91 @@
+<%- include('new_student_header'); -%>
+<div class="container-fluid">
+    <div class="row home-row">
+            <div class="student-navigation-bar col-6 col-md-1">
+                <div class="navigation row">
+                    <nav>
+                        <ul class="navigation-bar">
+                            <li class="mentor-link-item"><a href="/student/classroom/<%= classroom%>/test"><img src="/images/test.png" class="test-navigation-img"/></a></li>
+                            <li class="mentor-link-item student-active"><a href="/student/classroom/<%= classroom%>/webinars"><img src="/images/webinar.png" class="test-navigation-img"/></a></li>
+                            <br/>
+                            <br/>
+                            <li class="mentor-link-item"><a href="/student/classroom"><img src="/images/back.png"/></a></li>
+                            <li class="mentor-link-item"><a href="/logout"><img src="/images/logout.png"/></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="mentor-content col-md-10">
+                <div class="row">
+                    <% if(webinars && webinars.length>0 ){ %>
+                        <div class="mentor-tests-container">
+                            <%webinars.forEach((webinar) =>{ %>
+                                <div class="row">
+                                    <div class="mentor-test-card col-md-12">
+                                        <h3 class="test-title"><%= webinar.Title %></h3>
+                                        <button id="<%= webinar.Title%>" class="btn btn-outline-dark test-card-button" onclick="onclickfunc()">View Details </button>
+                                    </div>
+                                </div>
+                                <div  class="row">
+                                    <div id="<%= webinar.Title%>-details"class="col-md-12 mentor-test-details">
+                                        <div class="row">
+                                            <div class="title col-md-6">
+                                                Scheduled Date : 
+                                            </div>
+                                            <div class="value col-md-6">
+                                                <%= webinar.Date %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="title col-md-6">
+                                                Scheduled Time : 
+                                            </div>
+                                            <div class="value col-md-6">
+                                                <%= webinar.Time %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <a href="<%= webinar.WebinarLink %>"class="text-center col-md-6 webinar-button btn btn-outline-dark">
+                                                 Attend Webinar
+                                            </a>
+                                            <% if(!webinar.IsMarked){ %>
+                                                <a href="/"class="text-center col-md-6 webinar-button btn btn-secondary disabled">
+                                                    Attendance Not Marked
+                                               </a>
+                                            <% }else{ %>
+                                                <a href="/" class="text-center col-md-6 webinar-button btn btn-secondary disabled" >
+                                                    Attendance Marked
+                                               </a>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        </div>
+                    <% } else {%>
+                        <div class="col-md-6 m-auto">
+                            <h2 class="text-center">
+                                No Webinars Added!!
+                            </h2>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+    </div>
+</div>
+<script>
+    var onclickfunc;
+      $(document).ready(()=>{
+            onclickfunc =()=>{
+                event.preventDefault()
+                event.stopPropagation()
+                var id=event.target.id+'-details'
+                var details = $("#"+id)
+                details.slideToggle(
+                    2000,
+                    'swing'
+                )
+            }
+        })
+</script>
+<%- include('footer'); -%>
