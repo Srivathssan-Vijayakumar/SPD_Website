@@ -14,31 +14,35 @@
             </div>
         </div>
         <div class="mentor-content col-md-10">
+            <%if(answers && answers.length>0){ %>
             <div class="row">
-                <table class="mark-attendance-table">
-                    <thead>
-                        <th>S.no</th>
-                        <th>Roll Number</th>
-                        <th>Answer Script</th>
-                        <th> Grades </th>
-                    </thead>
-                    <tbody>
-                        <% var count =1; %>
-                        <% answers.forEach((answer) =>{ %>
-                            <tr>
-                                <td class="grade-row"><%= count %></td>
-                                <td class="grade-row"><%= answer.StudentRollNumber %></td>
-                                <td class="grade-row"><a id="<%= answer.AnswerFileId%>" style="cursor:pointer;" onclick="showtest()"> <%= answer.AnswerFileName%></a> </td>
-                                <td class="grade-input grade-row"><input type="text" onchange="onchangefunc()" name="grades" value="<%= answer.Grade%>" id="<%= answer.StudentRollNumber %>"/></td>
-                            </tr>
-                            <% count+=1; %>
-                        <% }); %>
-                    </tbody>
-                </table>
+                    <table class="mark-attendance-table">
+                        <thead>
+                            <th>S.no</th>
+                            <th>Roll Number</th>
+                            <th>Answer Script</th>
+                            <th> Grades </th>
+                        </thead>
+                        <tbody>
+                            <% var count =1; %>
+                            <% answers.forEach((answer) =>{ %>
+                                <tr>
+                                    <td class="grade-row"><%= count %></td>
+                                    <td class="grade-row"><%= answer.StudentRollNumber %></td>
+                                    <td class="grade-row"><a id="<%= answer.AnswerFileId%>" style="cursor:pointer;" onclick="showtest()"> <%= answer.AnswerFileName%></a> </td>
+                                    <td class="grade-input grade-row"><input type="text" onchange="onchangefunc()" name="grades" value="<%= answer.Grade%>" id="<%= answer.StudentRollNumber %>"/></td>
+                                </tr>
+                                <% count+=1; %>
+                            <% }); %>
+                        </tbody>
+                    </table>
             </div>
             <div class="row mark-attendance-button">
                 <button onclick="onclickfunc()" class="btn btn-outline-dark"> Grade Students For Test </button>
             </div>
+            <% }else{ %>
+                <h2 class="text-center"> No Answer Sheets For You to Grade!!</h2>
+            <% } %>
         </div>
     </div>
 </div>

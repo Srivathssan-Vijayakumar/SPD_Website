@@ -191,7 +191,7 @@ router.post('/schedule-webinar/:id',(req,res)=>{
 router.get('/attendance/:id',(req,res)=>{
     const webinarid = req.params.id
     if(res.locals.user){
-        Students.find({Mentor:res.locals.user.Username}).then((students)=>{
+        Students.find({Mentor:res.locals.user.Name}).then((students)=>{
             res.render('new_mark_attendance',{
                 title:'Marking Attendance Page',
                 webinar:webinarid,
@@ -278,7 +278,7 @@ router.post('/grade-test/:id',(req,res)=>{
                         answer.Grade = parseFloat(grade.Grade).toFixed(2)
                         answer.save().then(()=>{
                             Students.findOne({Rollno:grade.Student}).then((student)=>{
-                                student.TotalGrades += grade.Grade
+                                student.TotalGrades += parseFloat(grade.Grade)
                                 student.save().then(()=>{
                                 }).catch((err)=>{
                                     console.log(err.toString())
