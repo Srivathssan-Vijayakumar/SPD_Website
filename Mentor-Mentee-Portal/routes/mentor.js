@@ -108,7 +108,8 @@ router.get('/classroom/:id/test',(req,res)=>{
         res.render('mentor_classroom_tests',{
             tests:tests,
             title:"Classroom Test Page",
-            classroom:req.params.id
+            classroom:req.params.id,
+            mentor:res.locals.user.Username
         });
     }).catch((err)=>{
         console.log(err.toString())
@@ -311,7 +312,8 @@ router.get('/dashboard',(req,res)=>{
                 res.render("mentor_dashboard",{
                     title:"Mentor",
                     attendanceList:attendanceList,
-                    gradesList:students
+                    gradesList:students,
+                    mentor:res.locals.user.Username,
                 })
             }else{
                 req.flash('danger','LogIn To Continue')

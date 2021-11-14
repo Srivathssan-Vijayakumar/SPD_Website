@@ -1,5 +1,122 @@
 <%- include('new_student_header'); -%>
-<div class="container-fluid">
+<div class="container-fluid admin-page">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <ul class=" top-navigation-area">
+            <li class="nav-item"><div class="profile-image-container"><svg class="profile-image col-md-1" xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#fff" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+              </svg></div></li>
+            <% if(student){ %>
+                <li class="nav-item"><a href="/student">Welcome <%= student.Username%></a></li>
+            <% }else{ %>
+                <li class="nav-item"><a href="/student">Guest Login</a></li>
+            <% } %>
+        </ul>
+        <ul class=" middle-navigation-area">
+            <li class="nav-item"><a href="/student/feedback">Give Feedback</a></li>
+            <li class="nav-item"><a class="Active" href="/student/profile">View Profile</a></li>
+        </ul>
+        <ul class=" bottom-navigation-area">
+            <li class="nav-item"><a href="/logout">Logout</a></li>   
+        </ul>
+    </div>
+    <div class="col-md-12 nav-button-area">
+        <span onclick="openNav()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg></span>
+        <div class="logo-container col-md-1">
+            <img src="/images/logo.png" class="logo"/>
+        </div>
+    </div>
+    <div id="admin-content col-md-12 main">
+        <div class="row">
+            <div class="col-md-12 student-profile-container">
+                <div class="row student-profiles-image">
+                    <div class="col-md-2 student-image">
+                        <img src="/images/testpicture.jpg">
+                    </div>
+                    <div class="col-md-4 student-name">
+                        <h4 class="student-profile-name"><%= student.Rollno%> - <%= student.Name %></h4>
+                    </div>
+                </div>
+                <div class="row student-profile-details">
+                    <div class="student-profile-detail-row row">
+                        <div class="col-md-6 title">
+                            <h5>Username : </h5>
+                        </div>
+                        <div class="col-md-6 value">
+                            <p><%= student.Username %></p>
+                        </div>
+                    </div>
+                    <div class="student-profile-detail-row row">
+                        <div class="col-md-6 title">
+                            <h5>Email : </h5>
+                        </div>
+                        <div class="col-md-6 value">
+                            <p><%= student.Email %></p>
+                        </div>
+                    </div>
+                    <div class="student-profile-detail-row row">
+                        <div class="col-md-6 title">
+                            <h5>Mobile Number : </h5>
+                        </div>
+                        <div class="col-md-6 value">
+                            <p><%= student.PhoneNo %></p>
+                        </div>
+                    </div>
+                    <div class="student-profile-detail-row row">
+                        <div class="col-md-6 title">
+                            <h5>Password : </h5>
+                        </div>
+                        <div class="col-md-6 value">
+                            <p><%= student.Password %></p>
+                        </div>
+                    </div>
+                    <div class="student-profile-detail-row row">
+                        <div class="col-md-6 title">
+                            <h5>Mentor : </h5>
+                        </div>
+                        <div class="col-md-6 value">
+                            <p><%= student.Mentor %></p>
+                        </div>
+                    </div>
+                    <div class="student-profile-detail-row row">
+                        <div class="col-md-6 title">
+                            <h5>Attendance Percentage : </h5>
+                        </div>
+                        <div class="col-md-6 value">
+                            <p><%= parseFloat(student.Attendance).toFixed(2) %> %</p>
+                        </div>
+                    </div>
+                    <div class="student-profile-detail-row row">
+                        <div class="col-md-6 title">
+                            <h5>Grade Percentage : </h5>
+                        </div>
+                        <div class="col-md-6 value">
+                            <p><%= parseFloat(student.TotalGrades).toFixed(2) %></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row edit-profile-button">
+                    <a href="/student/edit-profile/<%= student.Rollno %>" class="btn btn-outline-danger"> Edit Profile </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "350px";
+      }
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      } 
+</script>
+
+
+<%- include('footer'); -%>
+<!-- <div class="container-fluid">
     <div class="row home-row">
             <div class="student-navigation-bar col-6 col-md-4">
                 <div class="row student-profile">
@@ -101,5 +218,4 @@
                 </div>
             </div>
     </div>
-</div>
-<%- include('footer'); -%>
+</div> -->

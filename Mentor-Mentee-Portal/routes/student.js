@@ -13,28 +13,26 @@ const Answers = require('../models/Answers')
 //General Route
 router.get("/",(req,res)=>{
     if(res.locals.user){
-        res.render("new_student",{
-            title:"Mentor-Student Portal",
-            username:res.locals.user.Username
-        })
+        res.redirect('/student/classroom')
     }else{
-        res.render("new_student",{
-            title:"Mentor-Student Portal",
-            username:null
-        })
+        req.flash('danger','Please Log In to continue.')
+        res.redirect('/')
     }
 })
 
 //Student Classroom Route
 router.get("/classroom",(req,res)=>{
     if(res.locals.user){
-        Classrooms.find({Mentor:res.locals.user.Mentor}).then((classrooms)=>{
-            res.render('new_student_classroom',{
-                title:"Student Classroom Page",
-                classrooms:classrooms,
+        Mentors.findOne({Name:res.locals.user.Mentor}).then((mentor)=>{
+            Classrooms.find({Mentor:mentor.Username}).then((classrooms)=>{
+                res.render('new_student_classroom',{
+                    title:"Student Classroom Page",
+                    classrooms:classrooms,
+                    student:res.locals.user.Username
+                })
+            }).catch((err)=>{
+                console.log(err.toString())
             })
-        }).catch((err)=>{
-            console.log(err.toString())
         })
     }else{
         req.flash('danger','Please Log In to continue')
