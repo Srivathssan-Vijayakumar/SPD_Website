@@ -279,7 +279,7 @@ router.post('/grade-test/:id',(req,res)=>{
                         answer.Grade = parseFloat(grade.Grade).toFixed(2)
                         answer.save().then(()=>{
                             Students.findOne({Rollno:grade.Student}).then((student)=>{
-                                student.TotalGrades += parseFloat(grade.Grade)
+                                student.TotalGrades = parseFloat(student.TotalGrades) + parseFloat(grade.Grade)
                                 student.save().then(()=>{
                                 }).catch((err)=>{
                                     console.log(err.toString())
